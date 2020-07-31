@@ -139,6 +139,21 @@ bool check_header_shape(xcom_version version, const Json& json, std::string &err
             { "profile_number", Json::NUMBER },
             { "profile_date", Json::OBJECT },
         }, err);
+    case xcom_version::enemy_unknown:
+        return json.has_shape({
+            { std::string("version"), Json::NUMBER },
+            { std::string("uncompressed_size"), Json::NUMBER },
+            { "game_number", Json::NUMBER },
+            { "save_number", Json::NUMBER },
+            { "save_description", Json::OBJECT },
+            { "time", Json::OBJECT },
+            { "map_command", Json::STRING },
+            { "tactical_save", Json::BOOL },
+            { "ironman", Json::BOOL },
+            { "autosave", Json::BOOL },
+            { "dlc", Json::STRING },
+            { "language", Json::STRING }
+        }, err);
     default:
         throw xcom::error::unsupported_version(version);
     }
